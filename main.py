@@ -10,7 +10,7 @@ from sanic.log import logger
 """
 Application Initialization:
 
-The middleware request will set important variables like db info into the context, 
+The middleware request will set important variables like db info into the context,
 this is important in order to reconnect to database.
 """
 app = Sanic()
@@ -23,6 +23,7 @@ def init(sanic, loop):
 async def add_key(request):
     context.set('db_host', app.config.get('dbhost'))
     context.set('db_port', app.config.get('dbport'))
+    context.set('request', request)
 
 """
 Routes Initialization
