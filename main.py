@@ -1,11 +1,10 @@
 from sanic import Sanic
-from sanic.response import json
 from db.motor_connection import connect
 from api.routes import add_routes
 import uvloop
 import asyncio
 import aiotask_context as context
-from sanic.log import logger
+from sanic_openapi import swagger_blueprint
 
 """
 Application Initialization:
@@ -14,6 +13,7 @@ The middleware request will set important variables like db info into the contex
 this is important in order to reconnect to database.
 """
 app = Sanic()
+app.blueprint(swagger_blueprint)
 @app.listener('before_server_start')
 def init(sanic, loop):
     connect(app.config.get('dbhost'), app.config.get('dbport'))

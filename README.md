@@ -62,3 +62,7 @@ Payload:
     
 
 `[GET]` localhost:8000/user/INSERTED-ID
+
+## DOC
+
+Swagger URL: `http://localhost:8000/swagger/`

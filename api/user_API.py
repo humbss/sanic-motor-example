@@ -1,12 +1,12 @@
-from sanic.views import HTTPMethodView
-from sanic.response import text
 from api.user_service import register_user
 from api.user_service import get_user
 from jsonschema import validate
 from jsonschema.exceptions import ValidationError
 from sanic import response
-import aiotask_context as context
+from sanic.response import text
+from sanic_openapi import doc
 import json
+
 
 def get_schema():
     return {
@@ -17,6 +17,9 @@ def get_schema():
         },
     }
 
+
+@doc.summary("Post new User.")
+@doc.consumes(doc.String(name="body"), location="body")
 async def route_post_user(req):
     try:
         validate(instance=json.loads(req.body), schema=get_schema())
@@ -25,6 +28,8 @@ async def route_post_user(req):
     except ValidationError as e:
         return e
 
-async def route_get_user(req,user_id):
+
+@doc.summary("Fetch user by ID")
+async def route_get_user(req, user_id):
     rps = await get_user(user_id)
     return response.json(text(rps))
