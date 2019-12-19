@@ -1,7 +1,7 @@
 # sanic-motor-example
 Python 3+ event-loop application using Sanic as microframework and Motor in the persistence layer.
 
-![sanic](https://www.clipartmax.com/png/middle/218-2184588_cartoon-sanic-by-diamond1771-cartoon-sanic-by-diamond1771-cartoon.png)
+![sanic](https://raw.githubusercontent.com/huge-success/sanic-assets/master/png/sanic-framework-logo-white-400x97.png)
 
 ## Setup Project
 
