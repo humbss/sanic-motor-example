@@ -12,19 +12,13 @@ class AbstractRepository(ABC):
     _model = None
 
     @classmethod
-    async def get(cls, filters={}, options={}):
-        """Retrieve all data by filters."""
+    async def paginate(cls, filters={}, options={}):
+        """Retrieve all data by filters paginated."""
 
-        cls._limit = cls._get_limit(options)
-        cls._page = cls._get_page(options)
-        cls._count = await cls.count(filters)
-        cls._page_count = int(math.ceil(cls._count / cls._limit))
-
-        collection = cls.get_model().get_collection_name()
-        data = await get_connection()[collection].find(filters).skip(cls._limit * (cls._page - 1)).to_list(cls._limit)
+        data = await cls.get(filters, options)
 
         response = {
-          'data': cls._serialize(data),
+          'data': data,
           'links': {
               'first': cls._get_url(1),
               'last': cls._get_url(cls._page_count),
@@ -45,6 +39,21 @@ class AbstractRepository(ABC):
           }
         }
 
+        return response
+
+    @classmethod
+    async def get(cls, filters={}, options={}):
+        """Retrieve all data by filters."""
+
+        cls._limit = cls._get_limit(options)
+        cls._page = cls._get_page(options)
+        cls._count = await cls.count(filters)
+        cls._page_count = int(math.ceil(cls._count / cls._limit))
+
+        collection = cls.get_model().get_collection_name()
+        data = await get_connection()[collection].find(filters).skip(cls._limit * (cls._page - 1)).to_list(cls._limit)
+
+        response = cls._serialize(data)
         return response
 
     @classmethod

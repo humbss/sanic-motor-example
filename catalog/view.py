@@ -8,7 +8,7 @@ class ProductListView(HTTPMethodView):
     """Class representing the list and create of the product."""
 
     async def get(self, request):
-        data = await ProductService().get(options=request.args)
+        data = await ProductService().paginate(options=request.args)
         return json(data)
 
     async def post(self, request):

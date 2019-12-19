@@ -8,6 +8,11 @@ class AbstractService(ABC):
     _repository = None
 
     @classmethod
+    async def paginate(cls, filters={}, options={}):
+        """Retrieve all data by filters paginated."""
+        return await cls.get_repository().paginate(filters, options)
+
+    @classmethod
     async def get(cls, filters={}, options={}):
         """Retrieve all data by filters."""
         return await cls.get_repository().get(filters, options)
