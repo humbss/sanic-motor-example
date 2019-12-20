@@ -23,8 +23,7 @@ def get_schema():
 async def route_post_user(req):
     try:
         validate(instance=json.loads(req.body), schema=get_schema())
-        resp = {"id", text(await register_user(req))}
-        return response.json(resp)
+        return response.json(await register_user(req))
     except ValidationError as e:
         return e
 

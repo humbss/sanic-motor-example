@@ -41,6 +41,8 @@ Python 3+ event-loop application using Sanic as microframework and Motor in the 
 ├── db
 │   ├── __init__.py
 │   └──  motor_connection.py ---> (DB Connection handler)
+├── tests
+│   └──  test_user.py ---> (User API unit tests)
 ├── docker-compose.yml ---> (Docker compose with Mongo DB service)
 ├── main.py ---> (APP ENTRYPOINT)
 ├── Makefile
@@ -49,7 +51,7 @@ Python 3+ event-loop application using Sanic as microframework and Motor in the 
 
 ```
 
-## Test
+## Test Requests
 
 `[POST]` localhost:8000/user/
 
@@ -63,6 +65,12 @@ Payload:
 
 `[GET]` localhost:8000/user/INSERTED-ID
 
+## Unit Tests
+
+The directory `tests` has the unit tests (PyTest) files, you can invoke the test execution with the command:
+
+`pytest`
+ 
 ## DOC
 
 Swagger URL: `http://localhost:8000/swagger/`
