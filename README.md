@@ -7,11 +7,11 @@ Python 3+ event-loop application using Sanic as microframework and Motor in the 
 
 1. Create virtual environment (in clone directory):
 
-    `python3 -m venv ./env`
+    `python3 -m venv ./envi`
 
     Activate the new environment
 
-    `source ./env/bin/activate`
+    `source ./envi/bin/activate`
 
 2. Install dependencies
 
@@ -19,7 +19,7 @@ Python 3+ event-loop application using Sanic as microframework and Motor in the 
 
 3. Create .env file with the following content:
 
-    `SANIC_dbhost='localhost'`
+    `SANIC_dbhost=localhost`
 
     `SANIC_dbport=27017`
 

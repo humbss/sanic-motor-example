@@ -1,5 +1,4 @@
 from sanic import Sanic
-from sanic.response import json
 from api.user_API import route_post_user
 from api.user_API import route_get_user
 
