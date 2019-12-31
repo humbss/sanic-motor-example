@@ -34,21 +34,22 @@ Python 3+ event-loop application using Sanic as microframework and Motor in the 
 ```bash
 .
 ├── api
-│   ├── __init__.py
-│   ├── routes.py
-│   ├── user_API.py ---> (REST API Layer)
-│   └── user_service.py ---> (Business Layer)
-├── db
-│   ├── __init__.py
-│   └──  motor_connection.py ---> (DB Connection handler)
+│   ├── __init__.py
+│   ├── routes.py          ---> (Routes handler, configure available rest routes)
+│   └── user_API.py        ---> (User rest service API example)
+├── docker-compose.yml     ---> (Mongo service)
+├── main.py                ---> (Application entry point)
+├── Makefile               ---> (Make scripts)
+├── README.md              ---> (This file) 
+├── requirements.txt       ---> (Required libs)
+├── service            
+│   └── user_service.py    ---> (User api service layer, it deals with DB)
 ├── tests
-│   └──  test_user.py ---> (User API unit tests)
-├── docker-compose.yml ---> (Docker compose with Mongo DB service)
-├── main.py ---> (APP ENTRYPOINT)
-├── Makefile
-├── README.md
-└── requirements.txt ---> (Required libs file)
-
+│   └── test_user.py       ---> (Unit tests)
+└── util
+    ├── generic_except.py  ---> (Util for exception handling)
+    ├── __init__.py
+    └──  motor_connection.py ---> (Util for DB connection handling)
 ```
 
 ## Test Requests
