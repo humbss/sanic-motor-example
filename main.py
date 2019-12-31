@@ -1,5 +1,5 @@
 from sanic import Sanic
-from db.motor_connection import connect
+from util.motor_connection import connect
 from api.routes import add_routes
 import uvloop
 import asyncio
@@ -15,7 +15,7 @@ this is important in order to reconnect to database.
 app = Sanic()
 app.blueprint(swagger_blueprint)
 @app.listener('before_server_start')
-def init(sanic, loop):
+async def init(sanic, loop):
     connect(app.config.get('dbhost'), app.config.get('dbport'))
 
 

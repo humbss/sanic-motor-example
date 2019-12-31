@@ -11,7 +11,7 @@ db = None
     recommended to change by a function argument.
 '''
 def connect(db_host, db_port):
-    logger.info("[DB] Establishing connection DB connection in: %s:%s ", db_host, db_port)
+    logger.info("[DB] Establishing DB connection to: %s:%s ", db_host, db_port)
 
     if db_host is None:
         db_host = context.get('db_host')
